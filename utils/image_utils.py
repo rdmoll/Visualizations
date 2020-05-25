@@ -3,9 +3,9 @@ import cairo
 def save_canvas(surface, filename, index):
     if( index < 10 ):
         padding = "000"
-    if( index > 9 and j < 100):
+    if( index > 9 and index < 100):
         padding = "00"
-    if( index > 99 and j < 1000):
+    if( index > 99 and index < 1000):
         padding = "0"
     if( index > 999 ):
         padding = ""
