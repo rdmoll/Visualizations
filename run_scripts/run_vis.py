@@ -14,4 +14,4 @@ if __name__ == '__main__':
     print("Running visualization: " + vis_string)
     if vis_string == "grad":
         gradDes = GradientDescent(512, 512)
-        gradDes.execute_vis(100, "./../images/grad")
+        gradDes.execute_vis(200, "./../images/grad")
