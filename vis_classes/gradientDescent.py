@@ -41,9 +41,9 @@ class GradientDescent:
 
     def execute_vis(self, num_steps, filename_base):
 
-        num_streams = 50
-        nx = 16
-        ny = 4
+        num_streams = 2000
+        nx = 8
+        ny = 8
 
         coeffs = [ [ np.random.rand() for j in range(1, nx) ] for i in range(1, ny) ]
 
@@ -56,8 +56,13 @@ class GradientDescent:
         #for i in range(25, num_streams):
         #    xArr[0][i] = 0.55 + 0.008*i
 
+        #for i in range(0, num_streams):
+        #    xArr[0][i] = 0.30 + 0.008*i
+
         for i in range(0, num_streams):
-            xArr[0][i] = 0.30 + 0.008*i
+            theta = 2.0 * np.pi * np.random.rand()
+            xArr[0][i] = 0.5*np.cos(theta) + 0.5
+            yArr[0][i] = 0.5*np.sin(theta) + 0.5
 
         xInd = np.arange(1, nx)
         yInd = np.arange(1, ny)
@@ -68,8 +73,8 @@ class GradientDescent:
             self.ctx.fill()
 
             for k in range(0, num_streams):
-                dzdx = self.calc_dzdx(xArr[j][k], yArr[j][k], xInd, yInd, coeffs) - 25.0*(2.0*xArr[j][k] - 1.0)
-                dzdy = self.calc_dzdy(xArr[j][k], yArr[j][k], xInd, yInd, coeffs) - 40.0*(1.0 - yArr[j][k]) - 20
+                dzdx = self.calc_dzdx(xArr[j][k], yArr[j][k], xInd, yInd, coeffs) + 45.0*(2.0*xArr[j][k] - 1.0)
+                dzdy = self.calc_dzdy(xArr[j][k], yArr[j][k], xInd, yInd, coeffs) + 45.0*(2.0*yArr[j][k] - 1.0) #40.0*(1.0 - yArr[j][k]) - 20
 
                 x = xArr[j][k] - 0.0002*dzdx
                 y = yArr[j][k] - 0.0002*dzdy
@@ -81,8 +86,8 @@ class GradientDescent:
                 for i in range(0, j + 1):
                     self.ctx.line_to(xArr[i][k], yArr[i][k])
 
-            self.ctx.set_source_rgb(1.0-yArr[j][k], 0.0, yArr[j][k])
-            self.ctx.set_line_width(0.0025)
+            self.ctx.set_source_rgb(yArr[j][k], 0.0, 1.0-yArr[j][k])
+            self.ctx.set_line_width(0.001)
             self.ctx.stroke()
 
             if (yArr[j + 1][k] > 1.0):
