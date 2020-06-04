@@ -47,12 +47,12 @@ class SpringPoints:
 
         for j in range(0, num_steps):
             dx = abs(x0_1 - x0_0)
-            x1_0 = 0.5*fac*dt2*(r - dx) + vx_0*dt + x0_0
+            x1_0 = 0.5*fac*dt2*(r - dx) + vx0_0*dt + x0_0
             vx1_0 = vx0_0 + fac*(r - 0.5*(x1_0 + x0_0))
             x0_0 = x1_0
             vx0_0 = vx1_0
 
-            self.ctx.arc(x + x_offset, 0.0 + y_offset, 0.01, 0.0, 2.0*math.pi)
+            self.ctx.arc(x0_0 + x_offset, 0.0 + y_offset, 0.01, 0.0, 2.0*math.pi)
             self.ctx.set_source_rgb(0.0, 1.0, 0.0)
             self.ctx.set_line_width(0.05)
             #self.ctx.stroke()
