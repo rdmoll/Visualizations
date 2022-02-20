@@ -1,4 +1,4 @@
-# Kur-Siv eqns
+# Kuramoto-Sivashinsky
 #
 # v_t + v_xx + v_xxxx + vv_x = 0
 
